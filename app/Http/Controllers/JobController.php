@@ -15,4 +15,13 @@ class JobController extends Controller
         $jobs = Job::all();
         return view('jobs.index', compact('jobs'));
     }
+
+    /**
+     * Update the candidature status to "Sent" (value = O).
+     */
+    public function updateCandidature(Job $job)
+    {
+        $job->update(['sent_candidature' => 'O']);
+        return redirect()->route('jobs.index')->with('success', 'Candidature marked as sent!');
+    }
 }
